@@ -1,0 +1,61 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Registro</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <form (ngSubmit)="register()">
+    <!-- Parte del Padre -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Información del Padre</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="floating">Nombre del Padre</ion-label>
+          <ion-input type="text" [(ngModel)]="padre.Nombre" name="nombrePadre"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Apellido del Padre</ion-label>
+          <ion-input type="text" [(ngModel)]="padre.Apellido" name="apellidoPadre"></ion-input>
+        </ion-item>
+        <!-- Agregar más campos del padre aquí (Apellido 2, Teléfono, Dirección, etc.) -->
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Parte de los Hijos -->
+    <!-- Parte de los Hijos -->
+<ion-card *ngFor="let hijo of hijos; let i = index">
+  <ion-card-header>
+    <ion-card-title>Información del Hijo {{ i + 1 }}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-item>
+      <ion-label position="floating">Nombre del Hijo</ion-label>
+      <ion-input type="text" [(ngModel)]="hijo.Nombre" name="nombreHijo_{{ i }}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Apellido del Hijo</ion-label>
+      <ion-input class="custom-font" type="text" [(ngModel)]="hijo.Apellido" name="apellidoHijo_{{ i }}"></ion-input>
+    </ion-item>
+    <!-- Agregar más campos del hijo aquí (Apellido 2, Grado, Escuela, Grupo, etc.) -->
+    <!-- Agregar botón "Eliminar" solo si hay más de un hijo -->
+    <ion-button (click)="eliminarHijo(i)" *ngIf="hijos.length > 1">Eliminar</ion-button>
+  </ion-card-content>
+</ion-card>
+
+
+    <ion-button expand="full" (click)="addHijo()">Agregar Hijo</ion-button>
+    <ion-button expand="full" type="submit">Registrar</ion-button>
+  </form>
+</ion-content>
